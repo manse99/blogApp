@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd-with-locales';
+import '@quasar/extras/ionicons-v4/ionicons-v4.css';
 
-import './assets/SCSS/base.scss'
+import './assets/scss/base.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

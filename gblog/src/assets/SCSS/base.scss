@@ -1,2 +1,11 @@
-@import './_variables';
-@import './_navigagtion';
+@import './variables';
+@import './navigation';
+
+
+body {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+    background-color: $background;
+    margin: 0;
+    
+}
