@@ -1,5 +1,5 @@
-import React from 'react'
-import {link} from 'react-router-dom'
+import React, { useState } from 'react'
+//import {link} from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { Avatar } from 'antd';
 
@@ -26,11 +26,11 @@ const navLinks = [
 
 
 export default function Navigation ({user}) {
-    const { FirstName, LastName } = user;
+    const [menuActive, setmenuActive] = useState(false);
     return (
-        <nav className="site-navigation">
+        <nav className="site-navigation" role="navigation">
             <span className="menu-title">My Blog</span>
-            <div className="menu-content-container">
+            <div className={`menu-content-container ${menuActive ? 'active' : ""}`}>
                     <ul>
                         { navLinks.map((link, index) => (
                             <li key={index}>
@@ -40,11 +40,13 @@ export default function Navigation ({user}) {
                         }
                     </ul>
                     <span>
-                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={(39)}/>
-                    <span className="menu-avatar-name">(${user.FirstName} ${user.LastName})</span>
-                    </span>          
+                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={(35)}/>
+                    <span className="menu-avatar-name">{`${user.firstName} ${user.lastName}`}</span>
+                    </span>
 
             </div>
+            <i className='ionicons icon ion-ios-menu' onClick={() => setmenuActive(!true)}/>          
+
         </nav>
     );
 }
