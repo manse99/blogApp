@@ -16,10 +16,19 @@
 
     }
 
+    .ion-ios-menu {
+        font-size: 35px;
+        width: 65px;
+        align-items: center;
+        cursor: pointer;
+        display: none;
+    }
+
+
     .menu-content-container {
         display: flex;
         align-items: center;
-        margin-right: 30px;
+        padding-right: 30px;
 
         .ant-avatar {
             background: $background;
@@ -31,13 +40,6 @@
             margin-left: 15px;
         }
 
-        .ion-ios-menu {
-            font-size: 35px;
-            width: 65px;
-            align-items: center;
-            cursor: pointer;
-            display: none;
-        }
     }
 
     ul {
@@ -76,7 +78,20 @@
             top: 65px;
             left: -300px;
             transition: 300ms ease left;
+            flex-direction: column-reverse;
 
+            ul {
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            ul, li {
+                width: 100%;
+            }
+
+            &.active {
+                left: 0px;
+            }
         }
 
         .ion-ios-menu {
