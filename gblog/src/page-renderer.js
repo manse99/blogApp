@@ -1,49 +1,95 @@
-/*import React from 'react'
-import { useMatch } from 'react-router-dom';
 
-const generatePage = page => {
-    const component = () => require(`./pages/${page}`).default
-
-    try {
-        return React.createElement(component())
-    } catch (err) {
-        console.warn(err)
-        return React.createElement(() => 404)
-    }
-}
-
-export default function PageRenderer () {
-    const {
-        params: { page }
-    } = useMatch
-
-    return generatePage(page)
-}
-*/
 
 import React from 'react';
-import { useMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const generatePage = async (page) => {
+    const component = () => import(`./pages/${page}.js`);
+
     try {
-        const component = (await import(`./pages/${page}`)).default;
-        return React.createElement(component);
+        const PageComponent = (await component()).default;
+        return React.createElement(PageComponent);
     } catch (err) {
         console.warn(err);
-        return React.createElement(() => <h1>404 - Page Not Found</h1>);
+        return React.createElement(() => <div>404 - Page Not Found</div>);
     }
 };
 
 export default function PageRenderer() {
-    const match = useMatch("/:page"); // Adjust the route pattern as needed
+    const { page } = useParams();
 
-    if (!match || !match.params) {
-        return <h1>404 - Page Not Found</h1>;
-    }
+    const [PageComponent, setPageComponent] = React.useState(null);
 
-    const { page } = match.params;
+    React.useEffect(() => {
+        generatePage(page).then(component => setPageComponent(component));
+    }, [page]);
 
-    const PageComponent = generatePage(page);
-
-    return <>{PageComponent}</>;
+    return PageComponent;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+import React from 'react';
+import { useRouteMatch } from 'react-router-dom';
+
+const generatePage = page => {
+    
+        const component = () => require(`./pages/${page}.js`).default
+
+        try {
+            return React.createElement(component())
+        } catch (err) {
+            console.warn(err)
+            return React.createElement(() => 404)
+        }
+       
+     }
+
+
+
+        export default function PageRenderer() {
+            const {
+                params: { page }
+            } = useRouteMatch()
+
+            return generatePage(page)
+
+}
+*/

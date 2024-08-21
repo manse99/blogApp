@@ -39,7 +39,7 @@ export default function Navigation ({user}) {
                             ))
                         }
                     </ul>
-                    <span>
+                    <span className="menu-avatar-container">
                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" size={(35)}/>
                     <span className="menu-avatar-name">{`${user.firstName} ${user.lastName}`}</span>
                     </span>
